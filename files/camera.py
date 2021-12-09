@@ -19,17 +19,17 @@ class Camera:
         mouse_pos = pg.mouse.get_pos()
 
         # x movement
-        if mouse_pos[0] > self.width * 0.97:
+        if mouse_pos[0] > self.width * 0.8:
             self.dx = -self.speed
-        elif mouse_pos[0] < self.width * 0.03:
+        elif mouse_pos[0] < self.width * 0.05:
             self.dx = self.speed
         else:
             self.dx = 0
 
         # y movement
-        if mouse_pos[1] > self.height * 0.97:
+        if mouse_pos[1] > self.height * 0.8:
             self.dy = -self.speed
-        elif mouse_pos[1] < self.height * 0.03:
+        elif mouse_pos[1] < self.height * 0.05:
             self.dy = self.speed
         else:
             self.dy = 0

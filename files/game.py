@@ -68,4 +68,7 @@ class Game:
         )
 
         pg.display.flip()
-
+    def get_map(self): return self.world.get_map()
+    def get_map_size_x(self): return self.world.get_map_size_x()
+    def get_map_size_y(self): return self.world.get_map_size_y()
+    def load_map(self): return self.world.load_map()
