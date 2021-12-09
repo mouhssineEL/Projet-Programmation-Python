@@ -9,7 +9,7 @@ class Camera:
         self.width = width
         self.height = height
 
-        self.scroll = pg.Vector2(0, 0)
+        self.scroll = pg.Vector2(-1900, -1080)
         self.dx = 0
         self.dy = 0
         self.speed = 25

@@ -63,7 +63,7 @@ class Game:
             self.screen,
             'fps={}'.format(round(self.clock.get_fps())),
             25,
-            (255, 255, 255),
+            (255, 0, 255),
             (10, 10)
         )
 

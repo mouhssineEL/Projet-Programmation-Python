@@ -17,7 +17,7 @@ class Lumbermill:
     def update(self):
         now = pg.time.get_ticks()
         if now - self.resource_cooldown > 2000:
-            self.resource_manager.resources["wood"] += 1
+            self.resource_manager.resources["Wood"] += 1
             self.resource_cooldown = now
 
 
@@ -36,7 +36,7 @@ class Stonemasonry:
     def update(self):
         now = pg.time.get_ticks()
         if now - self.resource_cooldown > 2000:
-            self.resource_manager.resources["stone"] += 1
+            self.resource_manager.resources["Stone"] += 1
             self.resource_cooldown = now
 
 

@@ -153,7 +153,7 @@ class World:
         minx = min([x for x, y in iso_poly])
         miny = min([y for x, y in iso_poly])
 
-        r = random.randint(1, 100)
+        r = random.randint(1, 50)
         perlin = 100 * noise.pnoise2(grid_x/self.perlin_scale, grid_y/self.perlin_scale)
 
         if (perlin >= 15) or (perlin <= -35):
