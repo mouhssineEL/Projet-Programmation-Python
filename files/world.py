@@ -3,7 +3,7 @@ import pygame as pg
 import random
 import noise
 from .settings import TILE_SIZE
-from .buildings import Lumbermill, Stonemasonry
+from .buildings import House1, House2
 
 
 
@@ -24,19 +24,30 @@ class World:
         self.tiles = self.load_images()
         self.world = self.create_world()
 
-        self.buildings = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
 
         self.temp_tile = None
         self.examine_tile = None
 
+        self.index = 0
+        self.path = None
+        self.dest = None
+        self.numero = 0
+        self.units = None
+        self.okay = None
+        #to add buiding and units
+        self.buildings = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
+        self.unit = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
+
     def update(self, camera):
-        
+
         mouse_pos = pg.mouse.get_pos()
         mouse_action = pg.mouse.get_pressed()
 
-        if mouse_action[2]:
+
+        if mouse_action[2] and mouse_action[0]:
             self.examine_tile = None
             self.hud.examined_tile = None
+            self.okay = None
 
         self.temp_tile = None
         if self.hud.selected_tile is not None:
@@ -57,29 +68,36 @@ class World:
                     "iso_poly": iso_poly,
                     "collision": collision
                 }
-
+                ###############################################
+                ##    sont des test pour ajouter les maisons,ave cle test si y a pas
+                ##    de collision
+                ################################################
                 if mouse_action[0] and not collision:
-                    if self.hud.selected_tile["name"] == "lumbermill":
-                        ent = Lumbermill(render_pos, self.resource_manager)
+                    if self.hud.selected_tile["name"] == "House1":
+                        ent = House1(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
-                    elif self.hud.selected_tile["name"] == "stonemasonry":
-                        ent = Stonemasonry(render_pos, self.resource_manager)
+                    elif self.hud.selected_tile["name"] == "House2":
+                        ent = House2(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
+
+
                     self.world[grid_pos[0]][grid_pos[1]]["collision"] = True
                     self.hud.selected_tile = None
 
         else:
-
-            grid_pos = self.mouse_to_grid(mouse_pos[0], mouse_pos[1], camera.scroll)
-
+            grid_pos = self.mouse_to_grid(mouse_pos[0], mouse_pos[0],camera.scroll)
             if self.can_place_tile(grid_pos):
-                building = self.buildings[grid_pos[0]][grid_pos[1]]
+                building = self.buildings[grid_pos[0]][grid_pos[0]]
+                unit = self.unit[grid_pos[0]][grid_pos[1]]
                 if mouse_action[0] and (building is not None):
                     self.examine_tile = grid_pos
                     self.hud.examined_tile = building
-
+                if mouse_action[0] and (unit is not None):
+                    self.hud.examined_tile = unit
+                    self.pos = grid_pos
+                    self.okay = 1
 
     def draw(self, screen, camera):
 
@@ -106,6 +124,12 @@ class World:
                             mask = pg.mask.from_surface(building.image).outline()
                             mask = [(x + render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x, y + render_pos[1] - (building.image.get_height() - TILE_SIZE) + camera.scroll.y) for x, y in mask]
                             pg.draw.polygon(screen, (255, 255, 255), mask, 3)
+                #draw units
+                unit = self.unit[x][y]
+                if unit is not None:
+                    screen.blit(unit.image,
+                                (render_pos[0] + self.grass_tiles.get_width() / 2 + camera.scroll.x,
+                                 render_pos[1] - (unit.image.get_height() - TILE_SIZE) + camera.scroll.y))
 
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
@@ -154,16 +178,16 @@ class World:
         miny = min([y for x, y in iso_poly])
 
         r = random.randint(1, 50)
-        perlin = 100 * noise.pnoise2(grid_x/self.perlin_scale, grid_y/self.perlin_scale)
+        """perlin = 100 * noise.pnoise2(grid_x/self.perlin_scale, grid_y/self.perlin_scale)
 
-        if (perlin >= 15) or (perlin <= -35):
+        if (perlin >= 100) or (perlin <= -100):
             tile = "tree"
-        else:
-            if r == 1:
+        else: """
+        if r == 1:
                 tile = "tree"
-            elif r == 2:
+        elif r == 2:
                 tile = "rock"
-            else:
+        else:
                 tile = ""
 
         out = {
@@ -181,6 +205,15 @@ class World:
         iso_x = x - y
         iso_y = (x + y)/2
         return iso_x, iso_y
+    def create_collision_matrix(self):
+        collision_matrix = [[1 for x in range (self.grid_length_x)] for y in range(self.grid_length_y)]
+        for x in range(self.grid_length_x):
+            for y in self.grid_length_y:
+                if self.world[x][y]["collision"]:
+                    collision_matrix[y][x] = 0
+        return collision_matrix
+
+
 
     def mouse_to_grid(self, x, y, scroll):
         # transform to world position (removing camera scroll and offset)
@@ -201,7 +234,7 @@ class World:
         building1 = pg.image.load("../assets/graphics/building01.png").convert_alpha()
         building2 = pg.image.load("../assets/graphics/building02.png").convert_alpha()
         tree = pg.image.load("../assets/graphics/tree.png").convert_alpha()
-        rock = pg.image.load("../assets/graphics/rock.png").convert_alpha()
+        rock = pg.image.load("../assets/graphics/rock0000.png").convert_alpha()
 
         images = {
             "building1": building1,
@@ -224,4 +257,6 @@ class World:
             return True
         else:
             return False
-
+    def get_map(self): return self.world
+    def get_map_size_x(self):return self.grid_length_x
+    def get_map_size_y(self):return self.grid_length_y
