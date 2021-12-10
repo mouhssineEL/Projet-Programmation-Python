@@ -229,12 +229,12 @@ class World:
 
     def load_images(self):
 
-        block = pg.image.load("../assets/graphics/block.png").convert_alpha()
+        block = pg.image.load("../assets/graphics/block1111111111111.png").convert_alpha()
         # read images
         building1 = pg.image.load("../assets/graphics/building01.png").convert_alpha()
         building2 = pg.image.load("../assets/graphics/building02.png").convert_alpha()
         tree = pg.image.load("../assets/graphics/tree.png").convert_alpha()
-        rock = pg.image.load("../assets/graphics/rock0000.png").convert_alpha()
+        rock = pg.image.load("../assets/graphics/rock.png").convert_alpha()
 
         images = {
             "building1": building1,
