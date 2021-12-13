@@ -10,7 +10,7 @@ from files.game import Game
 from main import main
 
 pygame.init()
-
+#ggggggggggggggggggg
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 screen_width=800
