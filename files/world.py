@@ -34,6 +34,7 @@ class World:
         self.numero = 0
         self.units = None
         self.okay = None
+        self.collision = self.create_collision_matrix()
         #to add buiding and units
         self.buildings = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
         self.unit = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
@@ -200,11 +201,6 @@ class World:
         }
 
         return out
-
-    def cart_to_iso(self, x, y):
-        iso_x = x - y
-        iso_y = (x + y)/2
-        return iso_x, iso_y
     def create_collision_matrix(self):
         collision_matrix = [[1 for x in range (self.grid_length_x)] for y in range(self.grid_length_y)]
         for x in range(self.grid_length_x):
@@ -212,6 +208,12 @@ class World:
                 if self.world[x][y]["collision"]:
                     collision_matrix[y][x] = 0
         return collision_matrix
+
+    def cart_to_iso(self, x, y):
+        iso_x = x - y
+        iso_y = (x + y)/2
+        return iso_x, iso_y
+
 
 
 
