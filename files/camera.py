@@ -30,7 +30,7 @@ class Camera:
         # y movement
         if mouse_pos[1] > self.height * 0.97:
             self.dy = -self.speed
-        elif mouse_pos[1] < self.height * 0.05:
+        elif mouse_pos[1] < self.height * 0.03:
             self.dy = self.speed
         else:
             self.dy = 0
