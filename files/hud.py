@@ -106,16 +106,16 @@ class Hud:
             txt = resource + ": " + str(resource_value)
             draw_text(screen, txt, 30, (255, 255, 255), (pos, 0))
             pos += 100
-
+    #fonction qui permet d'ajouter les image des maisons
     def load_images(self):
 
         # read images
-        lumbermill = pg.image.load("../assets/graphics/building01.png")
-        stonemasonry = pg.image.load("../assets/graphics/building02.png")
+        House1 = pg.image.load("../assets/graphics/building01.png")
+        House2 = pg.image.load("../assets/graphics/building02.png")
 
         images = {
-            "lumbermill": lumbermill,
-            "stonemasonry": stonemasonry
+            "House1": House1,
+            "House2": House2
         }
 
         return images
