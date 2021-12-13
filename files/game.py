@@ -27,7 +27,7 @@ class Game:
         # world
         self.world = World(self.resource_manager, self.entities, self.hud, 50, 50, self.width, self.height)
 
-        # camera
+        # camera !
         self.camera = Camera(self.width, self.height)
 
     def run(self):

@@ -19,9 +19,9 @@ class House1:
             self.resource_cooldown = now
 
 
-    #def delete(self): self.image = None
+    def delete(self): self.image = None
 
-    #def get_name(self): return self.name
+    def get_name(self): return self.name
 
 class House2:
 

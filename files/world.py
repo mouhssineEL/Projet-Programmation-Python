@@ -70,7 +70,7 @@ class World:
                 }
                 ###############################################
                 ##    sont des test pour ajouter les maisons,ave cle test si y a pas
-                ##    de collision
+                ##    de collision !!
                 ################################################
                 if mouse_action[0] and not collision:
                     if self.hud.selected_tile["name"] == "House1":

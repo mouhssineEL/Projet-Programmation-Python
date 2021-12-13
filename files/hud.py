@@ -122,7 +122,7 @@ class Hud:
 
     def scale_image(self, image, w=None, h=None):
 
-        if (w == None) and (h == None):
+        if (w ==None) and (h == None):
             pass
         elif h == None:
             scale = w / image.get_width()
