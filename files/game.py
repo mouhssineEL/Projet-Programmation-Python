@@ -15,7 +15,7 @@ class Game:
         self.clock = clock
         self.width, self.height = self.screen.get_size()
 
-        # entities
+        #entities
         self.entities = []
 
         # resource manager

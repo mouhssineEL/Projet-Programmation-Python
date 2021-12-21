@@ -8,7 +8,7 @@ class ResourceManager:
 
     def __init__(self):
 
-        # resources here
+        #resources here
         self.resources = {
             "Wood": 10,
             "Stone": 10,

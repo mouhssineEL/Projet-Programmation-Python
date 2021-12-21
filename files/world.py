@@ -61,7 +61,7 @@ class World:
                 render_pos = self.world[grid_pos[0]][grid_pos[1]]["render_pos"]
                 iso_poly = self.world[grid_pos[0]][grid_pos[1]]["iso_poly"]
                 collision = self.world[grid_pos[0]][grid_pos[1]]["collision"]
-
+#
                 self.temp_tile = {
                     "image": img,
                     "render_pos": render_pos,

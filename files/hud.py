@@ -117,7 +117,7 @@ class Hud:
             "House1": House1_img,
             "House2": House2_img
         }
-
+#
         return images
 
     def scale_image(self, image, w=None, h=None):

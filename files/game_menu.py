@@ -127,7 +127,7 @@ height = screen.get_height()
 smallfont = pygame.font.SysFont('Arial', 35)
 
 text = smallfont.render('quit', True, color)
-
+#
 while game:
     # quit here
     for ev in pygame.event.get():
