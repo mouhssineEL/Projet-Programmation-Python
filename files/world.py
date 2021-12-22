@@ -4,9 +4,7 @@ import random
 import noise
 from .settings import TILE_SIZE
 from .buildings import House1, House2
-
-
-
+from .workers import Worker
 class World:
 
     def __init__(self, resource_manager, entities, hud, grid_length_x, grid_length_y, width, height):
@@ -34,10 +32,13 @@ class World:
         self.numero = 0
         self.units = None
         self.okay = None
-        #self.collision = self.create_collision_matrix()
-        #to add buiding and units
+        self.collision_matrix = self.create_collision_matrix()
+        #to add building and units and workers
         self.buildings = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
         self.unit = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
+        self.workers = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
+
+
 
     def update(self, camera):
 
@@ -82,16 +83,17 @@ class World:
                         ent = House2(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
+                        self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
 
 
                     self.world[grid_pos[0]][grid_pos[1]]["collision"] = True
                     self.hud.selected_tile = None
 
         else:
-            grid_pos = self.mouse_to_grid(mouse_pos[0], mouse_pos[1],camera.scroll)
+            grid_pos = self.mouse_to_grid(mouse_pos[0], mouse_pos[1], camera.scroll)
             if self.can_place_tile(grid_pos):
                 building = self.buildings[grid_pos[0]][grid_pos[1]]
-                unit     = self.unit[grid_pos[0]][grid_pos[1]]
+                unit = self.unit[grid_pos[0]][grid_pos[1]]
                 if mouse_action[0] and (building is not None):
                     self.examine_tile = grid_pos
                     self.hud.examined_tile = building
@@ -125,12 +127,12 @@ class World:
                             mask = pg.mask.from_surface(building.image).outline()
                             mask = [(x + render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x, y + render_pos[1] - (building.image.get_height() - TILE_SIZE) + camera.scroll.y) for x, y in mask]
                             pg.draw.polygon(screen, (255, 255, 255), mask, 3)
-                #draw units
-                unit = self.unit[x][y]
-                if unit is not None:
-                    screen.blit(unit.image,
+                #draw workers
+                worker = self.unit[x][y]
+                if worker is not None:
+                    screen.blit(worker.image,
                                 (render_pos[0] + self.grass_tiles.get_width() / 2 + camera.scroll.x,
-                                 render_pos[1] - (unit.image.get_height() - TILE_SIZE) + camera.scroll.y))
+                                 render_pos[1] - (worker.image.get_height() - TILE_SIZE) + camera.scroll.y))
 
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
@@ -204,10 +206,11 @@ class World:
     def create_collision_matrix(self):
         collision_matrix = [[1 for x in range (self.grid_length_x)] for y in range(self.grid_length_y)]
         for x in range(self.grid_length_x):
-            for y in self.grid_length_y:
+            for y in range(self.grid_length_y):
                 if self.world[x][y]["collision"]:
                     collision_matrix[y][x] = 0
         return collision_matrix
+
 
     def cart_to_iso(self, x, y):
         iso_x = x - y

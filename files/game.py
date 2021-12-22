@@ -7,6 +7,8 @@ from .camera import Camera
 from .hud import Hud
 from .resource_manager import ResourceManager
 
+from workers import Worker
+
 
 class Game:
 
@@ -26,7 +28,7 @@ class Game:
 
         # world
         self.world = World(self.resource_manager, self.entities, self.hud, 50, 50, self.width, self.height)
-
+        for _ in range(20): Worker(self.world.world[25][25], self.world)
         # camera
         self.camera = Camera(self.width, self.height)
 
