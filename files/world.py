@@ -34,7 +34,7 @@ class World:
         self.numero = 0
         self.units = None
         self.okay = None
-        self.collision = self.create_collision_matrix()
+        #self.collision = self.create_collision_matrix()
         #to add buiding and units
         self.buildings = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
         self.unit = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
