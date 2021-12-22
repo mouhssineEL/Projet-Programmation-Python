@@ -83,6 +83,7 @@ class World:
                         ent = House2(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
+
                         self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
 
 
@@ -128,7 +129,7 @@ class World:
                             mask = [(x + render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x, y + render_pos[1] - (building.image.get_height() - TILE_SIZE) + camera.scroll.y) for x, y in mask]
                             pg.draw.polygon(screen, (255, 255, 255), mask, 3)
                 #draw workers
-                worker = self.unit[x][y]
+                worker = self.workers[x][y]
                 if worker is not None:
                     screen.blit(worker.image,
                                 (render_pos[0] + self.grass_tiles.get_width() / 2 + camera.scroll.x,
