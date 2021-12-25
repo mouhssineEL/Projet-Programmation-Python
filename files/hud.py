@@ -1,6 +1,6 @@
 
 import pygame as pg
-from .utils import draw_text
+from files.utils import draw_text
 
 
 class Hud:
@@ -79,6 +79,15 @@ class Hud:
                 if mouse_action[0]:
                     self.selected_tile = tile
 
+        for tile1 in self.tiles:
+            if self.resource_manager.is_affordable(tile1["name"]):
+                tile1["affordable"] = True
+            else:
+                tile1["affordable"] = False
+            if tile1["rect"].collidepoint(mouse_pos) and tile1["affordable"]:
+                if mouse_action[0]:
+                    self.selected_tile = tile1
+
     def draw(self, screen):
 
         # resouce hud
@@ -106,23 +115,23 @@ class Hud:
             txt = resource + ": " + str(resource_value)
             draw_text(screen, txt, 30, (255, 255, 255), (pos, 0))
             pos += 100
-
+    #fonction qui permet d'ajouter les image des maisons
     def load_images(self):
 
         # read images
-        House1_img = pg.image.load("../assets/graphics/building01.png")
-        House2_img = pg.image.load("../assets/graphics/building02.png")
+        House1 = pg.image.load("../assets/graphics/building01.png")
+        House2 = pg.image.load("../assets/graphics/building02.png")
 
         images = {
-            "House1": House1_img,
-            "House2": House2_img
+            "House1": House1,
+            "House2": House2
         }
-#
+
         return images
 
     def scale_image(self, image, w=None, h=None):
 
-        if (w ==None) and (h == None):
+        if (w == None) and (h == None):
             pass
         elif h == None:
             scale = w / image.get_width()

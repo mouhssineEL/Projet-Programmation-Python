@@ -11,7 +11,7 @@ class House1:
         self.resource_manager = resource_manager
         self.resource_manager.apply_cost_to_resource(self.name)
         self.resource_cooldown = pg.time.get_ticks()
-#
+
     def update(self):
         now = pg.time.get_ticks()
         if now - self.resource_cooldown > 2000:

@@ -10,7 +10,7 @@ from files.game import Game
 from main import main
 
 pygame.init()
-
+#ggggggggggggggggggg
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 screen_width=800
@@ -127,9 +127,9 @@ height = screen.get_height()
 smallfont = pygame.font.SysFont('Arial', 35)
 
 text = smallfont.render('quit', True, color)
-#
+
 while game:
-    # quit here
+    # quit
     for ev in pygame.event.get():
 
         if ev.type == pygame.QUIT:
