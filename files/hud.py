@@ -1,6 +1,6 @@
 
 import pygame as pg
-from .utils import draw_text
+from files.utils import draw_text
 
 
 class Hud:
@@ -78,6 +78,15 @@ class Hud:
             if tile["rect"].collidepoint(mouse_pos) and tile["affordable"]:
                 if mouse_action[0]:
                     self.selected_tile = tile
+
+        for tile1 in self.tiles:
+            if self.resource_manager.is_affordable(tile1["name"]):
+                tile1["affordable"] = True
+            else:
+                tile1["affordable"] = False
+            if tile1["rect"].collidepoint(mouse_pos) and tile1["affordable"]:
+                if mouse_action[0]:
+                    self.selected_tile = tile1
 
     def draw(self, screen):
 

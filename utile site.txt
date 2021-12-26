@@ -1,2 +1,8 @@
 #pour supprimer les background a une umage donnée
 https://www.remove.bg/fr
+
+
+# site pour refactor the size of any image , in our code the size is (64*128)
+#as the block size
+
+https://www.imgonline.com.ua/eng/resize-image-result.php
