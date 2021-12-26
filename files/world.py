@@ -37,7 +37,7 @@ class World:
         #to add building and units and workers
         self.buildings = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
         self.unit = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
-       # self.workers = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
+        self.workers = [[None for x in range(self.grid_length_x)] for y in range(self.grid_length_y)]
 
 
 
@@ -85,7 +85,7 @@ class World:
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
 
-                      #  self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 1
+                        self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 1
 
 
                     self.world[grid_pos[0]][grid_pos[1]]["collision"] = True
@@ -135,12 +135,12 @@ class World:
                             mask = pg.mask.from_surface(building.image).outline()
                             mask = [(x + render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x, y + render_pos[1] - (building.image.get_height() - TILE_SIZE) + camera.scroll.y) for x, y in mask]
                             pg.draw.polygon(screen, (255, 255, 255), mask, 3)
-                """draw workers
+                # draw workers
                 worker = self.workers[x][y]
                 if worker is not None:
                     screen.blit(worker.image,
                                 (render_pos[0] + self.grass_tiles.get_width() / 2 + camera.scroll.x,
-                                 render_pos[1] - (worker.image.get_height() - TILE_SIZE) + camera.scroll.y))"""
+                                 render_pos[1] - (worker.image.get_height() - TILE_SIZE) + camera.scroll.y))
 
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
