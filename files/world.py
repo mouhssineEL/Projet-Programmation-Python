@@ -2,9 +2,9 @@
 import pygame as pg
 import random
 import noise
-from files.settings import TILE_SIZE
-from files.buildings import House1, House2
-#from files.workers import Worker
+from .settings import TILE_SIZE
+from .buildings import House1, House2
+from .workers import Worker
 class World:
 
     def __init__(self, resource_manager, entities, hud, grid_length_x, grid_length_y, width, height):
@@ -24,7 +24,6 @@ class World:
 
 
         self.temp_tile = None
-        self.temp_tile1 = None
         self.examine_tile = None
 
         self.index = 0
@@ -85,7 +84,7 @@ class World:
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
 
-                        self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 1
+                        self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
 
 
                     self.world[grid_pos[0]][grid_pos[1]]["collision"] = True
@@ -117,14 +116,8 @@ class World:
                     screen.blit(self.tiles[tile],
                                     (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                                      render_pos[1] - (self.tiles[tile].get_height() - TILE_SIZE) + camera.scroll.y))
-                    # draw world tile1
-                tile1 = self.world[x][y]["tile1"]
-                if tile1 != "":
-                    screen.blit(self.tiles[tile1],
-                                    (self.grass_tiles.get_width() / 2 + camera.scroll.x,
-                                    (self.tiles[tile1].get_height() ) + camera.scroll.y))
 
-                # draw buildingss
+                # draw buildings
                 building = self.buildings[x][y]
                 if building is not None:
                     screen.blit(building.image,
@@ -135,7 +128,7 @@ class World:
                             mask = pg.mask.from_surface(building.image).outline()
                             mask = [(x + render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x, y + render_pos[1] - (building.image.get_height() - TILE_SIZE) + camera.scroll.y) for x, y in mask]
                             pg.draw.polygon(screen, (255, 255, 255), mask, 3)
-                # draw workers
+                #draw workers
                 worker = self.workers[x][y]
                 if worker is not None:
                     screen.blit(worker.image,
@@ -156,8 +149,6 @@ class World:
                     render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                     render_pos[1] - (self.temp_tile["image"].get_height() - TILE_SIZE) + camera.scroll.y
                 )
-
-
             )
 
     def create_world(self):
@@ -189,21 +180,13 @@ class World:
 
         minx = min([x for x, y in iso_poly])
         miny = min([y for x, y in iso_poly])
-        t = random.randint(1, 10)
+
         r = random.randint(1, 50)
         """perlin = 100 * noise.pnoise2(grid_x/self.perlin_scale, grid_y/self.perlin_scale)
 
         if (perlin >= 100) or (perlin <= -100):
             tile = "tree"
         else: """
-
-        if t == 1:
-                tile1 = "castle"
-        else :
-                tile1 = ""
-
-
-
         if r == 1:
                 tile = "tree"
         elif r == 2:
@@ -217,7 +200,6 @@ class World:
             "iso_poly": iso_poly,
             "render_pos": [minx, miny],
             "tile": tile,
-            "tile1": tile1,
             "collision": False if tile == "" else True
         }
 
@@ -259,15 +241,13 @@ class World:
         building2 = pg.image.load("../assets/graphics/building02.png").convert_alpha()
         tree = pg.image.load("../assets/graphics/tree.png").convert_alpha()
         rock = pg.image.load("../assets/graphics/rock.png").convert_alpha()
-        castle = pg.image.load("../assets/graphics/castle.png").convert_alpha()
 
         images = {
             "building1": building1,
             "building2": building2,
             "tree": tree,
             "rock": rock,
-            "block": block,
-            "castle":castle
+            "block": block
         }
 
         return images

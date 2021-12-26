@@ -44,7 +44,7 @@ class Worker:
 
     def update(self):
         now = pg.time.get_ticks()
-        if now - self.move_timer > 1500:
+        if now - self.move_timer > 100:
             new_pos = self.path[self.path_index]
 
             # update position in the world
@@ -53,6 +53,3 @@ class Worker:
             self.move_timer = now
             if self.path_index == len(self.path) - 1:
                 self.create_path()
-
-
-
