@@ -84,7 +84,7 @@ class World:
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
 
-                        self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
+                       # self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
 
 
                     self.world[grid_pos[0]][grid_pos[1]]["collision"] = True
@@ -235,12 +235,12 @@ class World:
 
     def load_images(self):
 
-        block = pg.image.load("../assets/graphics/block1111111111111.png").convert_alpha()
+        block = pg.image.load("graphics/block1111111111111.png").convert_alpha()
         # read images
-        building1 = pg.image.load("../assets/graphics/building01.png").convert_alpha()
-        building2 = pg.image.load("../assets/graphics/building02.png").convert_alpha()
-        tree = pg.image.load("../assets/graphics/tree.png").convert_alpha()
-        rock = pg.image.load("../assets/graphics/rock.png").convert_alpha()
+        building1 = pg.image.load("graphics/building01.png").convert_alpha()
+        building2 = pg.image.load("graphics/building02.png").convert_alpha()
+        tree = pg.image.load("graphics/tree.png").convert_alpha()
+        rock = pg.image.load("graphics/rock.png").convert_alpha()
 
         images = {
             "building1": building1,
