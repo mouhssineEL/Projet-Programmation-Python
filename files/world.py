@@ -117,6 +117,12 @@ class World:
                                     (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                                      render_pos[1] - (self.tiles[tile].get_height() - TILE_SIZE) + camera.scroll.y))
 
+                tile1 = self.world[x][y]["tile1"]
+                if tile1 != "":
+                    screen.blit(self.tiles[tile1],
+                                (self.grass_tiles.get_width() / 2 + camera.scroll.x,
+                                 (self.tiles[tile1].get_height() ) + camera.scroll.y))
+
                 # draw buildings
                 building = self.buildings[x][y]
                 if building is not None:
@@ -180,13 +186,18 @@ class World:
 
         minx = min([x for x, y in iso_poly])
         miny = min([y for x, y in iso_poly])
-
+        t = random.randint(1, 50)
         r = random.randint(1, 50)
         """perlin = 100 * noise.pnoise2(grid_x/self.perlin_scale, grid_y/self.perlin_scale)
 
         if (perlin >= 100) or (perlin <= -100):
             tile = "tree"
         else: """
+
+        if t == 1:
+                tile1 = "castle"
+        else:
+                tile1 = ""
         if r == 1:
                 tile = "tree"
         elif r == 2:
@@ -200,6 +211,7 @@ class World:
             "iso_poly": iso_poly,
             "render_pos": [minx, miny],
             "tile": tile,
+            "tile1": tile1,
             "collision": False if tile == "" else True
         }
 
@@ -241,13 +253,14 @@ class World:
         building2 = pg.image.load("../assets/graphics/building02.png").convert_alpha()
         tree = pg.image.load("../assets/graphics/tree.png").convert_alpha()
         rock = pg.image.load("../assets/graphics/rock.png").convert_alpha()
-
+        castle = pg.image.load("../assets/graphics/castle.png").convert_alpha()
         images = {
             "building1": building1,
             "building2": building2,
             "tree": tree,
             "rock": rock,
-            "block": block
+            "block": block,
+            "castle": castle
         }
 
         return images
