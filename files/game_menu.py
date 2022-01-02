@@ -14,7 +14,7 @@ pygame.display.set_caption('Button Demo')
 font = pygame.font.SysFont('Constantia', 30)
 
 background = transform.scale(image.load("graphics/bg_Menu.png"), (950, 600)).convert()
-screen.blit(background, (0, 0))
+
 # define colours
 bg = (204, 102, 0)
 red = (255, 0, 0)
@@ -26,7 +26,7 @@ yellow=(255, 255, 0)
 clicked = False
 counter = 0
 
-
+screen.blit(background, (0, 0))
 class button():
     # colours for button and text
     button_col = (255, 0, 0)
@@ -35,7 +35,7 @@ class button():
     text_col = black
     width = 180
     height = 70
-    screen.blit(background, (0, 0))
+
 
     def __init__(self, x, y, text):
         self.x = x
@@ -45,7 +45,7 @@ class button():
 
 
     def draw_button(self):
-        screen.blit(background, (0, 0))
+
 
         global clicked
         action = False
@@ -82,15 +82,15 @@ class button():
         return action
 
 
-again = button(650, 70, 'NewGame')
-quit = button(650, 430, 'Quit')
-down = button(650, 190, 'Load Game')
-up = button(650, 310, 'Settings')
+again = button(700, 70, 'NewGame')
+quit = button(700, 430, 'Quit')
+down = button(700, 190, 'Load Game')
+up = button(700, 310, 'Settings')
 
 run = True
 while run:
 
-    screen.fill(bg)
+    screen.blit(background, (0, 0))
 
     if again.draw_button():
         main()
