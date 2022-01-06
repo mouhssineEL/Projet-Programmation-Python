@@ -1,113 +1,139 @@
-from pygame.locals import *
+# imports
+import os
+
 import pygame
 from pygame import *
+from pygame.surface import Surface, SurfaceType
+
+from files.game import Game
 
 from main import main
+
 pygame.init()
+#ggggggggggggggggggg
+os.environ['SDL_VIDEO_CENTERED'] = '1'
+icon = pygame.image.load("../assets/graphics/icone.png")
+pygame.display.set_icon(icon)
+screen_width=800
+screen_height=500
+screen=pygame.display.set_mode((screen_width, screen_height))
 
-screen_width = 950
-screen_height = 600
+def text_format(message, textFont, textSize, textColor):
+    newFont = pygame.font.Font(textFont, textSize)
+    newText = newFont.render(message, 0, textColor)
+    return newText
 
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Button Demo')
-
-font = pygame.font.SysFont('Constantia', 30)
-
-background = transform.scale(image.load("graphics/bg_Menu.png"), (950, 600)).convert()
-
-# define colours
-bg = (204, 102, 0)
-red = (255, 0, 0)
-black = (0, 0, 0)
-white = (255, 255, 255)
+white=(255, 255, 255)
+black=(0, 0, 0)
+gray=(50, 50, 50)
+red=(255, 0, 0)
+green=(0, 255, 0)
+blue=(0, 0, 255)
 yellow=(255, 255, 0)
 
-# define global variable
-clicked = False
-counter = 0
+font = None
 
-screen.blit(background, (0, 0))
-class button():
-    # colours for button and text
-    button_col = (255, 0, 0)
-    hover_col = (75, 225, 255)
-    click_col = (50, 150, 255)
-    text_col = black
-    width = 180
-    height = 70
+clock = pygame.time.Clock()
+FPS=30
 
+background = transform.scale(image.load("../assets/graphics/bg_Menu.png"), (1000, 500)).convert()
 
-    def __init__(self, x, y, text):
-        self.x = x
-        self.y = y
-        self.text = text
+def main_menu():
 
+    menu=True
+    selected="start"
+    while menu:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_UP:
+                    selected="start"
+                elif event.key==pygame.K_DOWN:
+                    selected="quit"
+                if event.key==pygame.K_RETURN:
+                    if selected=="start":
+                        if __name__ == '__main__':
+                             main()
+                    if selected=="quit":
+                        pygame.quit()
+                        quit()
 
+        # Main Menu UI
+        screen.blit(background, (0, 0))
+        title=text_format("AGE OF INSA", font, 90, yellow)
 
-    def draw_button(self):
-
-
-        global clicked
-        action = False
-
-        # get mouse position
-        pos = pygame.mouse.get_pos()
-
-        # create pygame Rect object for the button
-        button_rect = Rect(self.x, self.y, self.width, self.height)
-
-        # check mouseover and clicked conditions
-        if button_rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1:
-                clicked = True
-                pygame.draw.rect(screen, self.click_col, button_rect)
-            elif pygame.mouse.get_pressed()[0] == 0 and clicked == True:
-                clicked = False
-                action = True
-            else:
-                pygame.draw.rect(screen, self.hover_col, button_rect)
+        if selected=="start":
+            text_start=text_format("START", font, 75, green)
         else:
-            pygame.draw.rect(screen, self.button_col, button_rect)
+            text_start = text_format("START", font, 75, black)
+        if selected=="quit":
+            text_quit=text_format("QUIT", font, 75, white)
+        else:
+            text_quit = text_format("QUIT", font, 75, black)
 
-        # add shading to button
-        pygame.draw.line(screen, white, (self.x, self.y), (self.x + self.width, self.y), 2)
-        pygame.draw.line(screen, white, (self.x, self.y), (self.x, self.y + self.height), 2)
-        pygame.draw.line(screen, black, (self.x, self.y + self.height), (self.x + self.width, self.y + self.height), 2)
-        pygame.draw.line(screen, black, (self.x + self.width, self.y), (self.x + self.width, self.y + self.height), 2)
+        title_rect=title.get_rect()
+        start_rect=text_start.get_rect()
+        quit_rect=text_quit.get_rect()
 
-        # add text to button
-        text_img = font.render(self.text, True, self.text_col)
-        text_len = text_img.get_width()
-        screen.blit(text_img, (self.x + int(self.width / 2) - int(text_len / 2), self.y + 25))
-        return action
+        # Main Menu Text
+        screen.blit(title, (screen_width/2 - (title_rect[2]/2), 80))
+        screen.blit(text_start, (screen_width/2 - (start_rect[2]/2), 300))
+        screen.blit(text_quit, (screen_width/2 - (quit_rect[2]/2), 360))
+        pygame.display.update()
+        clock.tick(FPS)
+        pygame.display.set_caption("Age Of Empires INSA TD3")
+# window settings
+game = True
+logiks = 100
+
+tolkaninfo = False
+
+game__over = False
+main_menu()
+pygame.quit()
+quit()
+# sprites
+class HedgeHog():
+    def __init__(self,name,health,age, tolkan, days_alive):
+        self.name = name
+        self.health = health
+        self.age = age
+        self.days_alive = days_alive
+        self.tolkan = tolkan
+    def is_tolkan_full(self):
+        global tolkaninfo
+        if self.tolkan:
+            self.health -=1
 
 
-again = button(700, 70, 'NewGame')
-quit = button(700, 430, 'Quit')
-down = button(700, 190, 'Load Game')
-up = button(700, 310, 'Settings')
+    def health(self):
+        global game__over
+        if self.health == 0:
+            game__over = True
 
-run = True
-while run:
 
-    screen.blit(background, (0, 0))
 
-    if again.draw_button():
-        main()
-    if quit.draw_button():
-        pygame.quit()
-    if up.draw_button():
-        print('Settings')
-    if down.draw_button():
-        print('Load Game')
+# Game
 
-    counter_img = font.render(str(counter), True, red)
-    screen.blit(counter_img, (280, 450))
+# game menu
+res = (800, 500)
+screen = pygame.display.set_mode(res)
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
+color = (255,255,255)
+
+width = screen.get_width()
+height = screen.get_height()
+smallfont = pygame.font.SysFont('Arial', 35)
+
+text = smallfont.render('quit', True, color)
+
+while game:
+    # quit
+    for ev in pygame.event.get():
+
+        if ev.type == pygame.QUIT:
+            game = False
 
     pygame.display.update()
-
-pygame.quit()

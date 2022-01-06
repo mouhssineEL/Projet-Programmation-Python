@@ -3,7 +3,7 @@ import pygame as pg
 import random
 import noise
 from .settings import TILE_SIZE
-from .buildings import House1, House2
+from .buildings import House1, House2,barrack
 from .workers import Worker
 class World:
 
@@ -79,12 +79,16 @@ class World:
                         ent = House1(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
+                    elif self.hud.selected_tile["name"] == "barrack":
+                        ent = barrack(render_pos, self.resource_manager)
+                        self.entities.append(ent)
+                        self.buildings[grid_pos[0]][grid_pos[1]] = ent
                     elif self.hud.selected_tile["name"] == "House2":
                         ent = House2(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
 
-                        self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
+                    #self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
 
 
                     self.world[grid_pos[0]][grid_pos[1]]["collision"] = True
@@ -203,6 +207,7 @@ class World:
             "collision": False if tile == "" else True
         }
 
+
         return out
     def create_collision_matrix(self):
         collision_matrix = [[1 for x in range (self.grid_length_x)] for y in range(self.grid_length_y)]
@@ -238,11 +243,13 @@ class World:
         block = pg.image.load("../assets/graphics/block1111111111111.png").convert_alpha()
         # read images
         building1 = pg.image.load("../assets/graphics/building01.png").convert_alpha()
+        barrack = pg.image.load("../assets/graphics/barrack1.png").convert_alpha()
         building2 = pg.image.load("../assets/graphics/building02.png").convert_alpha()
         tree = pg.image.load("../assets/graphics/tree.png").convert_alpha()
         rock = pg.image.load("../assets/graphics/rock.png").convert_alpha()
 
         images = {
+            "barrack": barrack,
             "building1": building1,
             "building2": building2,
             "tree": tree,

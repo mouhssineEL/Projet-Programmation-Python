@@ -127,13 +127,14 @@ class Hud:
     #fonction qui permet d'ajouter les image des maisons
     def load_images(self):
 
-        # read images
-        House1 = pg.image.load("graphics/building01.png")
-        House2 = pg.image.load("graphics/building02.png")
-
+        # read images sur licone
+        House1 = pg.image.load("../assets/graphics/building01.png")
+        House2 = pg.image.load("../assets/graphics/building02.png")
+        barrack = pg.image.load("../assets/graphics/barrack1.png")
         images = {
             "House1": House1,
-            "House2": House2
+            "House2": House2,
+            "barrack": barrack,
         }
 
         return images
