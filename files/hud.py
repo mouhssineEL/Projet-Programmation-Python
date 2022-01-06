@@ -88,6 +88,15 @@ class Hud:
                 if mouse_action[0]:
                     self.selected_tile = tile1
 
+        for tile1 in self.tiles:
+            if self.resource_manager.is_affordable(tile1["name"]):
+                tile1["affordable"] = True
+            else:
+                tile1["affordable"] = False
+            if tile1["rect"].collidepoint(mouse_pos) and tile1["affordable"]:
+                if mouse_action[0]:
+                    self.selected_tile = tile1
+
     def draw(self, screen):
 
         # resouce hud

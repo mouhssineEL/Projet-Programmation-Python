@@ -17,7 +17,7 @@ class House1:
         if now - self.resource_cooldown > 2000:
             self.resource_manager.resources["Wood"] += 1
             self.resource_cooldown = now
-
+#
 
     def delete(self): self.image = None
 
