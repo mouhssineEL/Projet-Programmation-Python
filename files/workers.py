@@ -10,7 +10,7 @@ class Worker:
     def __init__(self, tile, world):
         self.world = world
         self.world.entities.append(self)
-        image_worker = pg.image.load("graphics/worker.png").convert_alpha()
+        image_worker = pg.image.load("../assets/graphics/worker.png").convert_alpha()
         self.name = "worker"
         self.image = pg.transform.scale(image_worker, (image_worker.get_width() * 2, image_worker.get_height() * 2))
         self.tile = tile
