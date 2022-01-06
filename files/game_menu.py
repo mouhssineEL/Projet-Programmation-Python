@@ -12,7 +12,8 @@ from main import main
 pygame.init()
 #ggggggggggggggggggg
 os.environ['SDL_VIDEO_CENTERED'] = '1'
-
+icon = pygame.image.load("../assets/graphics/icone.png")
+pygame.display.set_icon(icon)
 screen_width=800
 screen_height=500
 screen=pygame.display.set_mode((screen_width, screen_height))
