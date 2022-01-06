@@ -14,7 +14,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Button Demo')
 
 font = pygame.font.SysFont('Constantia', 30)
-#fdsgdf
+#fdsg
 background = transform.scale(image.load("../assets/graphics/bg_Menu.png"), (950, 600)).convert()
 
 # define colours
