@@ -4,7 +4,7 @@ from pygame import *
 import os
 from main import main
 pygame.init()
-#test05
+#test0
 icon = pygame.image.load("../assets/graphics/icone.png")
 pygame.display.set_icon(icon)
 screen_width = 950
