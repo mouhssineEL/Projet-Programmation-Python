@@ -3,13 +3,12 @@ import pygame
 from pygame import *
 import os
 from main import main
-from stingss import stings
 pygame.init()
 
 #test
 #icon = pygame.image.load("graphics/icone.png")
 #pygame.display.set_icon(icon)
-screen_width = 1200
+screen_width = 1000
 screen_height = 675
 
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -17,7 +16,7 @@ pygame.display.set_caption('Age Of INSA')
 
 font = pygame.font.SysFont('Constantia', 30)
 #fdsgdf
-background = transform.scale(image.load("../graphics/bg_Menu2.png"), (1200, 675)).convert()
+background = transform.scale(image.load("../graphics/marron.jpg"), (1000, 675)).convert()
 
 # define colours
 bg = (204, 102, 0)
@@ -43,7 +42,7 @@ mixer.music.play(-1)
 
 class button():
     # colours for button and text
-    button_col = (225, 206, 154)
+    button_col = (204, 102, 0)
     hover_col = (75, 225, 255)
     click_col = (50, 150, 255)
     text_col = black
@@ -96,26 +95,23 @@ class button():
         return action
 
 
-again = button(900, 180, 'NewGame')
-quit = button(900, 540, 'Quit')
-down = button(900, 300, 'Load Game')
-up = button(900, 420, 'Settings')
-
-
-def game_menu():
+muet = button(500, 180, 'Muet')
+quit = button(500, 540, 'Quit')
+on = button(500, 300, 'Soud On')
+menu = button(500, 420, 'Menue')
+def stings():
     run = True
     while run:
 
-        screen.blit(background, (0, 0))
+        screen.blit(background, (100, 0))
 
-        if again.draw_button():
-            main()
+        if muet.draw_button():
+            print('Muet')
         if quit.draw_button():
             pygame.quit()
-        if up.draw_button():
-            stings()
-            print('Settings')
-        if down.draw_button():
+        if menu.draw_button():
+            main()
+        if on.draw_button():
             print('Load Game')
 
 
@@ -124,5 +120,5 @@ def game_menu():
                 run = False
 
         pygame.display.update()
+
     pygame.quit()
-game_menu()

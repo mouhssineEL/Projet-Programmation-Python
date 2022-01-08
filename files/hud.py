@@ -119,8 +119,8 @@ class Hud:
     def load_images(self):
 
         # read images
-        House1 = pg.image.load("graphics/building01.png")
-        House2 = pg.image.load("graphics/building02.png")
+        House1 = pg.image.load("../graphics/building01.png")
+        House2 = pg.image.load("../graphics/building02.png")
 
         images = {
             "House1": House1,

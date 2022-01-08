@@ -3,7 +3,7 @@ import pygame as pg
 import random
 import noise
 from .settings import TILE_SIZE
-from .buildings import House1, House2
+from .buildings import House1, House2,barrack
 from .workers import Worker
 class World:
 
@@ -79,12 +79,16 @@ class World:
                         ent = House1(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
+                    elif self.hud.selected_tile["name"] == "barrack":
+                        ent = barrack(render_pos, self.resource_manager)
+                        self.entities.append(ent)
+                        self.buildings[grid_pos[0]][grid_pos[1]] = ent
                     elif self.hud.selected_tile["name"] == "House2":
                         ent = House2(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
 
-                       # self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
+                    #self.collision_matrix[[grid_pos[1]][grid_pos[0]]] = 0
 
 
                     self.world[grid_pos[0]][grid_pos[1]]["collision"] = True
@@ -117,6 +121,12 @@ class World:
                                     (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                                      render_pos[1] - (self.tiles[tile].get_height() - TILE_SIZE) + camera.scroll.y))
 
+                tile1 = self.world[x][y]["tile1"]
+                if tile1 != "":
+                    screen.blit(self.tiles[tile1],
+                                (self.grass_tiles.get_width() / 2 + camera.scroll.x,
+                                 (self.tiles[tile1].get_height() ) + camera.scroll.y))
+
                 # draw buildings
                 building = self.buildings[x][y]
                 if building is not None:
@@ -134,7 +144,7 @@ class World:
                     screen.blit(worker.image,
                                 (render_pos[0] + self.grass_tiles.get_width() / 2 + camera.scroll.x,
                                  render_pos[1] - (worker.image.get_height() - TILE_SIZE) + camera.scroll.y))
-
+#"
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
             iso_poly = [(x + self.grass_tiles.get_width()/2 + camera.scroll.x, y + camera.scroll.y) for x, y in iso_poly]
@@ -180,13 +190,18 @@ class World:
 
         minx = min([x for x, y in iso_poly])
         miny = min([y for x, y in iso_poly])
-
+        t = random.randint(1, 50)
         r = random.randint(1, 50)
         """perlin = 100 * noise.pnoise2(grid_x/self.perlin_scale, grid_y/self.perlin_scale)
 
         if (perlin >= 100) or (perlin <= -100):
             tile = "tree"
         else: """
+
+        if t == 1:
+                tile1 = "castle"
+        else:
+                tile1 = ""
         if r == 1:
                 tile = "tree"
         elif r == 2:
@@ -200,8 +215,10 @@ class World:
             "iso_poly": iso_poly,
             "render_pos": [minx, miny],
             "tile": tile,
+            "tile1": tile1,
             "collision": False if tile == "" else True
         }
+
 
         return out
     def create_collision_matrix(self):
@@ -235,19 +252,22 @@ class World:
 
     def load_images(self):
 
-        block = pg.image.load("graphics/block1111111111111.png").convert_alpha()
+        block = pg.image.load("../graphics/block1111111111111.png").convert_alpha()
         # read images
-        building1 = pg.image.load("graphics/building01.png").convert_alpha()
-        building2 = pg.image.load("graphics/building02.png").convert_alpha()
-        tree = pg.image.load("graphics/tree.png").convert_alpha()
-        rock = pg.image.load("graphics/rock.png").convert_alpha()
-
+        building1 = pg.image.load("../graphics/building01.png").convert_alpha()
+        #barrack = pg.image.load("../graphics/barrack1.png").convert_alpha()
+        building2 = pg.image.load("../graphics/building02.png").convert_alpha()
+        tree = pg.image.load("../graphics/tree.png").convert_alpha()
+        rock = pg.image.load("../graphics/rock.png").convert_alpha()
+        castle = pg.image.load("../graphics/castle.png").convert_alpha()
         images = {
+            "barrack": barrack,
             "building1": building1,
             "building2": building2,
             "tree": tree,
             "rock": rock,
-            "block": block
+            "block": block,
+            "castle": castle
         }
 
         return images
