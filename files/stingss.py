@@ -1,8 +1,6 @@
 from pygame.locals import *
 import pygame
 from pygame import *
-import os
-from main import main
 pygame.init()
 
 #test
@@ -100,6 +98,7 @@ quit = button(500, 540, 'Quit')
 on = button(500, 300, 'Soud On')
 menu = button(500, 420, 'Menue')
 def stings():
+    from game_menu import menu_game
     run = True
     while run:
 
@@ -110,7 +109,7 @@ def stings():
         if quit.draw_button():
             pygame.quit()
         if menu.draw_button():
-            main()
+            menu_game()
         if on.draw_button():
             print('Load Game')
 

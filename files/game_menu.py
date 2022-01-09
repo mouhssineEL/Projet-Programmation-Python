@@ -6,7 +6,6 @@ from main import main
 from stingss import stings
 pygame.init()
 
-#test
 #icon = pygame.image.load("graphics/icone.png")
 #pygame.display.set_icon(icon)
 screen_width = 1200
@@ -102,7 +101,7 @@ down = button(900, 300, 'Load Game')
 up = button(900, 420, 'Settings')
 
 
-def game_menu():
+def menu_game() :
     run = True
     while run:
 
@@ -114,7 +113,6 @@ def game_menu():
             pygame.quit()
         if up.draw_button():
             stings()
-            print('Settings')
         if down.draw_button():
             print('Load Game')
 
@@ -124,5 +122,5 @@ def game_menu():
                 run = False
 
         pygame.display.update()
-    pygame.quit()
-game_menu()
+menu_game()
+pygame.quit()
