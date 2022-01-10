@@ -7,7 +7,7 @@ from .camera import Camera
 from .hud import Hud
 from .resource_manager import ResourceManager
 from horse import horse
-
+from porc import porc
 from workers import Worker
 
 
@@ -33,6 +33,8 @@ class Game:
 
         #horse
         for _ in range(20): horse(self.world.world[15][15], self.world)
+        #porc
+        for _ in range(20): porc(self.world.world[10][10], self.world)
 
         # camera
         self.camera = Camera(self.width, self.height)
