@@ -12,7 +12,7 @@ screen_height = 675
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Age Of INSA')
 
-font = pygame.font.SysFont('Constantia', 30)
+#font = pygame.font.SysFont('Constantia', 30)
 #fdsgdf
 background = transform.scale(image.load("../graphics/marron.jpg"), (1000, 675)).convert()
 
@@ -34,8 +34,8 @@ font = pygame.font.Font("../graphics/this.otf", 50)
 textsurface = font.render("text", False, (0, 0, 0))
 
 
-mixer.music.load("sounds/menu music.wav")
-mixer.music.play(-1)
+#mixer.music.load("sounds/menu music.wav")
+#mixer.music.play(-1)
 
 
 class button():
@@ -97,21 +97,25 @@ muet = button(500, 180, 'Muet')
 quit = button(500, 540, 'Quit')
 on = button(500, 300, 'Soud On')
 menu = button(500, 420, 'Menue')
+
 def stings():
     from game_menu import menu_game
+
     run = True
     while run:
 
         screen.blit(background, (100, 0))
 
+
         if muet.draw_button():
-            print('Muet')
+            pygame.mixer.music.pause()
         if quit.draw_button():
             pygame.quit()
         if menu.draw_button():
             menu_game()
+            #pygame.mixer.music.stop()
         if on.draw_button():
-            print('Load Game')
+            pygame.mixer.music.unpause()
 
 
         for event in pygame.event.get():

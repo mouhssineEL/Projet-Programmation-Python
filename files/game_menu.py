@@ -14,7 +14,7 @@ screen_height = 675
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Age Of INSA')
 
-font = pygame.font.SysFont('Constantia', 30)
+#font = pygame.font.SysFont('Constantia', 30)
 #fdsgdf
 background = transform.scale(image.load("../graphics/bg_Menu2.png"), (1200, 675)).convert()
 
@@ -112,6 +112,7 @@ def menu_game() :
         if quit.draw_button():
             pygame.quit()
         if up.draw_button():
+            #pygame.mixer.music.set_volume(0.1)
             stings()
         if down.draw_button():
             print('Load Game')
