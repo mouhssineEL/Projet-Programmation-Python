@@ -10,7 +10,7 @@ class animal:
     def __init__(self, tile, world):
         self.world = world
         self.world.entities.append(self)
-        image_animal = pg.image.load("../graphics/Chicken.gif").convert_alpha()
+        image_animal = pg.image.load("../graphics/animal.gif").convert_alpha()
         self.name = "animal"
         self.image = pg.transform.scale(image_animal, (image_animal.get_width(), image_animal.get_height()))
         self.tile = tile
