@@ -4,7 +4,7 @@ import pygame as pg
 class House1:
 
     def __init__(self, pos, resource_manager):
-        image = pg.image.load("../assets/graphics/building01.png")
+        image = pg.image.load("../graphics/building01.png")
         self.image = image
         self.name = "House1"
         self.rect = self.image.get_rect(topleft=pos)
@@ -26,7 +26,7 @@ class House1:
 class House2:
 
     def __init__(self, pos, resource_manager):
-        image = pg.image.load("../assets/graphics/building02.png")
+        image = pg.image.load("../graphics/building02.png")
         self.image = image
         self.name = "House2"
         self.rect = self.image.get_rect(topleft=pos)
@@ -67,7 +67,7 @@ class barrack:
 
 class castle:
     def __init__(self, pos, resource_manager):
-        image = pg.image.load("../assets/graphics/castle.png")
+        image = pg.image.load("../graphics/castle.png")
         self.image = image
         self.name = "castle"
         self.rect = self.image.get_rect(topleft=pos)
@@ -84,5 +84,7 @@ class castle:
 
 
     def get_name(self): return self.name
+
+
 
 

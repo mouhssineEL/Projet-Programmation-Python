@@ -88,15 +88,6 @@ class Hud:
                 if mouse_action[0]:
                     self.selected_tile = tile1
 
-        for tile1 in self.tiles:
-            if self.resource_manager.is_affordable(tile1["name"]):
-                tile1["affordable"] = True
-            else:
-                tile1["affordable"] = False
-            if tile1["rect"].collidepoint(mouse_pos) and tile1["affordable"]:
-                if mouse_action[0]:
-                    self.selected_tile = tile1
-
     def draw(self, screen):
 
         # resouce hud
@@ -127,14 +118,13 @@ class Hud:
     #fonction qui permet d'ajouter les image des maisons
     def load_images(self):
 
-        # read images sur licone
-        House1 = pg.image.load("../assets/graphics/building01.png")
-        House2 = pg.image.load("../assets/graphics/building02.png")
-        barrack = pg.image.load("../assets/graphics/barrack1.png")
+        # read images
+        House1 = pg.image.load("../graphics/building01.png")
+        House2 = pg.image.load("../graphics/building02.png")
+
         images = {
             "House1": House1,
-            "House2": House2,
-            "barrack": barrack,
+            "House2": House2
         }
 
         return images

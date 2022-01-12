@@ -3,23 +3,25 @@ import pygame
 from pygame import *
 import os
 from main import main
+from stingss import stings
 pygame.init()
-#test0
-icon = pygame.image.load("../assets/graphics/icone.png")
-pygame.display.set_icon(icon)
-screen_width = 950
-screen_height = 600
+
+#icon = pygame.image.load("graphics/icone.png")
+#pygame.display.set_icon(icon)
+screen_width = 1200
+screen_height = 675
 
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Button Demo')
+pygame.display.set_caption('Age Of INSA')
 
-font = pygame.font.SysFont('Constantia', 30)
-#fdsg
-background = transform.scale(image.load("../assets/graphics/bg_Menu.png"), (950, 600)).convert()
+#font = pygame.font.SysFont('Constantia', 30)
+#fdsgdf
+background = transform.scale(image.load("../graphics/bg_Menu2.png"), (1200, 675)).convert()
 
 # define colours
 bg = (204, 102, 0)
 red = (255, 0, 0)
+marron = (187, 174, 152)
 black = (0, 0, 0)
 white = (255, 255, 255)
 yellow=(255, 255, 0)
@@ -29,9 +31,18 @@ clicked = False
 counter = 0
 
 screen.blit(background, (0, 0))
+
+font = pygame.font.Font("../graphics/this.otf", 50)
+textsurface = font.render("text", False, (0, 0, 0))
+
+
+mixer.music.load("sounds/menu music.wav")
+mixer.music.play(-1)
+
+
 class button():
     # colours for button and text
-    button_col = (255, 0, 0)
+    button_col = (225, 206, 154)
     hover_col = (75, 225, 255)
     click_col = (50, 150, 255)
     text_col = black
@@ -80,36 +91,37 @@ class button():
         # add text to button
         text_img = font.render(self.text, True, self.text_col)
         text_len = text_img.get_width()
-        screen.blit(text_img, (self.x + int(self.width / 2) - int(text_len / 2), self.y + 25))
+        screen.blit(text_img, (self.x + int(self.width / 2) - int(text_len / 2), self.y +5))
         return action
 
 
-again = button(700, 70, 'NewGame')
-quit = button(700, 430, 'Quit')
-down = button(700, 190, 'Load Game')
-up = button(700, 310, 'Settings')
+again = button(900, 180, 'NewGame')
+quit = button(900, 540, 'Quit')
+down = button(900, 300, 'Load Game')
+up = button(900, 420, 'Settings')
 
-run = True
-while run:
 
-    screen.blit(background, (0, 0))
+def menu_game() :
+    run = True
+    while run:
 
-    if again.draw_button():
-        main()
-    if quit.draw_button():
-        pygame.quit()
-    if up.draw_button():
-        print('Settings')
-    if down.draw_button():
-        print('Load Game')
+        screen.blit(background, (0, 0))
 
-    counter_img = font.render(str(counter), True, red)
-    screen.blit(counter_img, (280, 450))
+        if again.draw_button():
+            main()
+        if quit.draw_button():
+            pygame.quit()
+        if up.draw_button():
+            #pygame.mixer.music.set_volume(0.1)
+            stings()
+        if down.draw_button():
+            print('Load Game')
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
 
-    pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
 
+        pygame.display.update()
+menu_game()
 pygame.quit()

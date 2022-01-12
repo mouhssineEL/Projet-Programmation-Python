@@ -144,7 +144,7 @@ class World:
                     screen.blit(worker.image,
                                 (render_pos[0] + self.grass_tiles.get_width() / 2 + camera.scroll.x,
                                  render_pos[1] - (worker.image.get_height() - TILE_SIZE) + camera.scroll.y))
-
+#"
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
             iso_poly = [(x + self.grass_tiles.get_width()/2 + camera.scroll.x, y + camera.scroll.y) for x, y in iso_poly]
@@ -252,14 +252,14 @@ class World:
 
     def load_images(self):
 
-        block = pg.image.load("../assets/graphics/block1111111111111.png").convert_alpha()
+        block = pg.image.load("../graphics/block1111111111111.png").convert_alpha()
         # read images
-        building1 = pg.image.load("../assets/graphics/building01.png").convert_alpha()
-        barrack = pg.image.load("../assets/graphics/barrack1.png").convert_alpha()
-        building2 = pg.image.load("../assets/graphics/building02.png").convert_alpha()
-        tree = pg.image.load("../assets/graphics/tree.png").convert_alpha()
-        rock = pg.image.load("../assets/graphics/rock.png").convert_alpha()
-        castle = pg.image.load("../assets/graphics/castle.png").convert_alpha()
+        building1 = pg.image.load("../graphics/building01.png").convert_alpha()
+        #barrack = pg.image.load("../graphics/barrack1.png").convert_alpha()
+        building2 = pg.image.load("../graphics/building02.png").convert_alpha()
+        tree = pg.image.load("../graphics/tree.png").convert_alpha()
+        rock = pg.image.load("../graphics/rock.png").convert_alpha()
+        castle = pg.image.load("../graphics/castle.png").convert_alpha()
         images = {
             "barrack": barrack,
             "building1": building1,

@@ -1,12 +1,13 @@
 import pygame as pg
 import sys
 from .world import World
-from .settings import TILE_SIZE
+#from .settings import TILE_SIZE
 from .utils import draw_text
 from .camera import Camera
 from .hud import Hud
 from .resource_manager import ResourceManager
-
+from horse import horse
+from porc import porc
 from workers import Worker
 
 
@@ -28,9 +29,16 @@ class Game:
 
         # world
         self.world = World(self.resource_manager, self.entities, self.hud, 50, 50, self.width, self.height)
-        for _ in range(20): Worker(self.world.world[25][25], self.world)
+        for _ in range(7): Worker(self.world.world[25][25], self.world)
+
+        #horse
+        for _ in range(20): horse(self.world.world[15][15], self.world)
+        #porc
+        for _ in range(20): porc(self.world.world[10][10], self.world)
+
         # camera
         self.camera = Camera(self.width, self.height)
+
 
     def run(self):
         self.playing = True
