@@ -2,9 +2,12 @@
 import pygame as pg
 import random
 import noise
-from .settings import TILE_SIZE
-from .buildings import House1, House2,barrack
-from .workers import Worker
+from settings import TILE_SIZE
+from house1 import House1
+from house2 import House2
+from barrack import barrack
+from workers import Worker
+
 class World:
 
     def __init__(self, resource_manager, entities, hud, grid_length_x, grid_length_y, width, height):
@@ -160,7 +163,7 @@ class World:
                     render_pos[1] - (self.temp_tile["image"].get_height() - TILE_SIZE) + camera.scroll.y
                 )
             )
-
+    #function to draw a world with isometric method
     def create_world(self):
 
         world = []
@@ -229,7 +232,7 @@ class World:
                     collision_matrix[y][x] = 0
         return collision_matrix
 
-
+    #function to transfer x and y to isometric position
     def cart_to_iso(self, x, y):
         iso_x = x - y
         iso_y = (x + y)/2
@@ -251,15 +254,16 @@ class World:
         return grid_x, grid_y
 
     def load_images(self):
-
+        #read the image of block & treen rock
         block = pg.image.load("../graphics/block1111111111111.png").convert_alpha()
-        # read images
-        building1 = pg.image.load("../graphics/building01.png").convert_alpha()
-        #barrack = pg.image.load("../graphics/barrack1.png").convert_alpha()
-        building2 = pg.image.load("../graphics/building02.png").convert_alpha()
         tree = pg.image.load("../graphics/tree.png").convert_alpha()
         rock = pg.image.load("../graphics/rock.png").convert_alpha()
+        # read images of building
+        building1 = pg.image.load("../graphics/building01.png").convert_alpha()
+        barrack = pg.image.load("../graphics/house.png").convert_alpha()
+        building2 = pg.image.load("../graphics/building02.png").convert_alpha()
         castle = pg.image.load("../graphics/castle.png").convert_alpha()
+
         images = {
             "barrack": barrack,
             "building1": building1,
