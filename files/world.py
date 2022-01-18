@@ -284,5 +284,5 @@ class World:
         else:
             return False
     def get_map(self): return self.world
-    def get_map_size_x(self):return self.grid_length_x
-    def get_map_size_y(self):return self.grid_length_y
+    def get_map_size_x(self): return self.grid_length_x
+    def get_map_size_y(self): return self.grid_length_y

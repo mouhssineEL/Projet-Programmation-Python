@@ -10,7 +10,7 @@ class animal:
     def __init__(self, tile, world):
         self.world = world
         self.world.entities.append(self)
-        image_animal = pg.image.load("../graphics/animal.gif").convert_alpha()
+        image_animal = pg.image.load("../graphics/Animal.gif").convert_alpha()
         self.name = "animal"
         self.image = pg.transform.scale(image_animal, (image_animal.get_width(), image_animal.get_height()))
         self.tile = tile
@@ -33,7 +33,7 @@ class animal:
                 self.start = self.grid.node(self.tile["grid"][0], self.tile["grid"][1])
                 self.end = self.grid.node(x, y)
                 finder = AStarFinder(diagonal_movement=DiagonalMovement.never)
-                self.path_index = 0
+                self.path_index = -4
                 self.path, runs = finder.find_path(self.start, self.end, self.grid)
                 searching_for_path = False
 

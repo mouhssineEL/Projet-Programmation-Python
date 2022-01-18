@@ -33,7 +33,7 @@ class Worker:
                 self.start = self.grid.node(self.tile["grid"][0], self.tile["grid"][1])
                 self.end = self.grid.node(x, y)
                 finder = AStarFinder(diagonal_movement=DiagonalMovement.never)
-                self.path_index = 0
+                self.path_index = -4
                 self.path, runs = finder.find_path(self.start, self.end, self.grid)
                 searching_for_path = False
 
