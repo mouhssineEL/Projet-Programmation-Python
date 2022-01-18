@@ -36,7 +36,7 @@ font = pygame.font.Font("../graphics/this.otf", 50)
 textsurface = font.render("text", False, (0, 0, 0))
 
 
-mixer.music.load("sounds/menu music.wav")
+mixer.music.load("../sounds/menu music.wav")
 mixer.music.play(-1)
 
 

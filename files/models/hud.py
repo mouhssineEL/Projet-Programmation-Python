@@ -1,6 +1,6 @@
 
 import pygame as pg
-from files.utils import draw_text
+from files.models.utils import draw_text
 
 
 class Hud:
