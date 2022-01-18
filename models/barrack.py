@@ -5,8 +5,8 @@ from buildings  import House
 class barrack(House):
 
     def __init__(self, pos, resource_manager):
-        super().__init__(self, pos, resource_manager)
-        image = pg.image.load("../../graphics/barrack.png")
+        super().__init__( pos, resource_manager)
+        image = pg.image.load("../graphics/house.png")
         self.image = image
         self.name = "barrack"
         self.rect = self.image.get_rect(topleft=pos)

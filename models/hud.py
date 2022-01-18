@@ -121,10 +121,12 @@ class Hud:
         # read images
         House1 = pg.image.load("../graphics/building01.png")
         House2 = pg.image.load("../graphics/building02.png")
+        barrack = pg.image.load("../graphics/house.png")
 
         images = {
             "House1": House1,
-            "House2": House2
+            "House2": House2,
+            "barrack":barrack
         }
 
         return images
