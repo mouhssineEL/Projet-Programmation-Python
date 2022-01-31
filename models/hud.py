@@ -11,7 +11,7 @@ class Hud:
         self.width = width
         self.height = height
 
-        self.hud_colour = (198, 155, 93, 175)
+        self.hud_colour = (18, 155, 93, 175)
 
         # resouces hud
         self.resouces_surface = pg.Surface((width, height * 0.02), pg.SRCALPHA)
@@ -24,7 +24,7 @@ class Hud:
         self.build_surface.fill(self.hud_colour)
 
         # select hud
-        self.select_surface = pg.Surface((width * 0.3, height * 0.2), pg.SRCALPHA)
+        self.select_surface = pg.Surface((width * 0.25, height * 0.15), pg.SRCALPHA)
         self.select_rect = self.select_surface.get_rect(topleft=(self.width * 0.35, self.height * 0.79))
         self.select_surface.fill(self.hud_colour)
 
@@ -101,7 +101,7 @@ class Hud:
             img = self.examined_tile.image.copy()
             img_scale = self.scale_image(img, h=h*0.7)
             screen.blit(img_scale, (self.width * 0.35 + 10, self.height * 0.79 + 40))
-            draw_text(screen, self.examined_tile.name, 40, (255, 255, 255), self.select_rect.topleft)
+            draw_text(screen, self.examined_tile.name, 30, (255, 255, 255), self.select_rect.topleft)
 
         for tile in self.tiles:
             icon = tile["icon"].copy()
@@ -121,7 +121,7 @@ class Hud:
         # read images
         House1 = pg.image.load("../graphics/building01.png")
         House2 = pg.image.load("../graphics/building02.png")
-        barrack = pg.image.load("../graphics/house.png")
+        barrack = pg.image.load("../graphics/barrack.png")
 
         images = {
             "House1": House1,

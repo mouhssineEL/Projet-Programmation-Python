@@ -7,7 +7,7 @@ class porc(animal):
         super().__init__(tile, world)
         self.world = world
         self.world.entities.append(self)
-        image_animal = pg.image.load("../graphics/porc.png").convert_alpha()
+        image_animal = pg.image.load("../graphics/sheep.png").convert_alpha()
         self.name = "porc"
         self.image = pg.transform.scale(image_animal, (image_animal.get_width(), image_animal.get_height()))
         self.tile = tile
