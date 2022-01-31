@@ -11,7 +11,7 @@ class Hud:
         self.width = width
         self.height = height
 
-        self.hud_colour = (198, 155, 93, 175)
+        self.hud_colour = (18, 155, 93, 175)
 
         # resouces hud
         self.resouces_surface = pg.Surface((width, height * 0.02), pg.SRCALPHA)
@@ -121,7 +121,7 @@ class Hud:
         # read images
         House1 = pg.image.load("../graphics/building01.png")
         House2 = pg.image.load("../graphics/building02.png")
-
+      #  worker = pg.image.load("../graphics/worker.jpg")
         images = {
             "House1": House1,
             "House2": House2
