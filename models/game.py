@@ -1,11 +1,11 @@
 import pygame as pg
 import sys
-from .world import World
-#from .settings import TILE_SIZE
-from .utils import draw_text
-from .camera import Camera
-from .hud import Hud
-from .resource_manager import ResourceManager
+from world import World
+from settings import TILE_SIZE
+from utils import draw_text
+from camera import Camera
+from hud import Hud
+from resource_manager import ResourceManager
 from horse import horse
 from porc import porc
 from workers import Worker

@@ -1,6 +1,6 @@
 
 import pygame as pg
-from files.models.utils import draw_text
+from models.utils import draw_text
 
 
 class Hud:
@@ -11,7 +11,7 @@ class Hud:
         self.width = width
         self.height = height
 
-        self.hud_colour = (18, 155, 93, 175)
+        self.hud_colour = (198, 155, 93, 175)
 
         # resouces hud
         self.resouces_surface = pg.Surface((width, height * 0.02), pg.SRCALPHA)
@@ -78,7 +78,7 @@ class Hud:
             if tile["rect"].collidepoint(mouse_pos) and tile["affordable"]:
                 if mouse_action[0]:
                     self.selected_tile = tile
-
+        """
         for tile1 in self.tiles:
             if self.resource_manager.is_affordable(tile1["name"]):
                 tile1["affordable"] = True
@@ -86,7 +86,7 @@ class Hud:
                 tile1["affordable"] = False
             if tile1["rect"].collidepoint(mouse_pos) and tile1["affordable"]:
                 if mouse_action[0]:
-                    self.selected_tile = tile1
+                    self.selected_tile = tile1 """
 
     def draw(self, screen):
 
@@ -121,10 +121,12 @@ class Hud:
         # read images
         House1 = pg.image.load("../graphics/building01.png")
         House2 = pg.image.load("../graphics/building02.png")
-      #  worker = pg.image.load("../graphics/worker.jpg")
+        barrack = pg.image.load("../graphics/house.png")
+
         images = {
             "House1": House1,
-            "House2": House2
+            "House2": House2,
+            "barrack":barrack
         }
 
         return images

@@ -6,3 +6,6 @@ https://www.remove.bg/fr
 #as the block size
 
 https://www.imgonline.com.ua/eng/resize-image-result.php
+
+#site pou faire un split à une image
+https://splitter.imageonline.co/
