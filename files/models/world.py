@@ -100,7 +100,7 @@ class World:
                 collision = self.world[grid_pos[0]][grid_pos[1]]["collision"]
                 building = self.buildings[grid_pos[0]][grid_pos[1]]
                 unit = self.unit[grid_pos[0]][grid_pos[1]]
-                if mouse_action[0] and collision :
+                if mouse_action[0] and collision:
                     self.examine_tile = grid_pos
                 if mouse_action[0] and (building is not None):
                     self.examine_tile = grid_pos
