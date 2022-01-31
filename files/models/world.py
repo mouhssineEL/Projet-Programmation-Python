@@ -99,9 +99,13 @@ class World:
             if self.can_place_tile(grid_pos):
                 collision = self.world[grid_pos[0]][grid_pos[1]]["collision"]
                 building = self.buildings[grid_pos[0]][grid_pos[1]]
+                worker = self.workers[grid_pos[0]][grid_pos[1]]
                 unit = self.unit[grid_pos[0]][grid_pos[1]]
                 if mouse_action[0] and collision:
                     self.examine_tile = grid_pos
+                if mouse_action[0] and (worker is not None):
+                    self.examine_tile = grid_pos
+                    self.hud.examined_tile = worker
                 if mouse_action[0] and (building is not None):
                     self.examine_tile = grid_pos
                     self.hud.examined_tile = building
@@ -132,8 +136,7 @@ class World:
                 if tile1 != "":
                     screen.blit(self.tiles[tile1],
                                 (self.grass_tiles.get_width() / 2 + camera.scroll.x,
-                                 (self.tiles[tile1].get_height() ) + camera.scroll.y))
-
+                                 (self.tiles[tile1].get_height()) + camera.scroll.y))
                 # draw buildings
                 building = self.buildings[x][y]
                 if building is not None:
