@@ -43,12 +43,12 @@ class House2:
 
     def get_name(self): return self.name
 
-class barrack:
+class Barrack:
 
     def __init__(self, pos, resource_manager):
-        image = pg.image.load("../assets/graphics/barrack1.png")
+        image = pg.image.load("../graphics/Barrack.png")
         self.image = image
-        self.name = "barrack"
+        self.name = "Barrack"
         self.rect = self.image.get_rect(topleft=pos)
         self.resource_manager = resource_manager
         self.resource_manager.apply_cost_to_resource(self.name)

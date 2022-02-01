@@ -3,7 +3,7 @@ import pygame as pg
 import random
 import noise
 from .settings import TILE_SIZE
-from .buildings import House1, House2,barrack
+from .buildings import House1, House2, Barrack
 from .workers import Worker
 class World:
 
@@ -79,8 +79,8 @@ class World:
                         ent = House1(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
-                    elif self.hud.selected_tile["name"] == "barrack":
-                        ent = barrack(render_pos, self.resource_manager)
+                    elif self.hud.selected_tile["name"] == "Barrack":
+                        ent = Barrack(render_pos, self.resource_manager)
                         self.entities.append(ent)
                         self.buildings[grid_pos[0]][grid_pos[1]] = ent
                     elif self.hud.selected_tile["name"] == "House2":
@@ -266,13 +266,13 @@ class World:
         block = pg.image.load("../graphics/block1111111111111.png").convert_alpha()
         # read images
         building1 = pg.image.load("../graphics/building01.png").convert_alpha()
-        #barrack = pg.image.load("../graphics/barrack1.png").convert_alpha()
+        Barrack = pg.image.load("../graphics/Barrack.png").convert_alpha()
         building2 = pg.image.load("../graphics/building02.png").convert_alpha()
         tree = pg.image.load("../graphics/tree.png").convert_alpha()
         rock = pg.image.load("../graphics/rock.png").convert_alpha()
         castle = pg.image.load("../graphics/castle.png").convert_alpha()
         images = {
-            "barrack": barrack,
+            "Barrack": Barrack,
             "building1": building1,
             "building2": building2,
             "tree": tree,

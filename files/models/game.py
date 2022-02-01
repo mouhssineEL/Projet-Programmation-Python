@@ -7,7 +7,7 @@ from .camera import Camera
 from .hud import Hud
 from .resource_manager import ResourceManager
 from horse import horse
-from porc import porc
+from sheep import porc
 from workers import Worker
 
 
