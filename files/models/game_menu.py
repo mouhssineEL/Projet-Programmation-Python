@@ -6,8 +6,8 @@ from main import main
 from stingss import stings
 pygame.init()
 
-#icon = pygame.image.load("graphics/icone.png")
-#pygame.display.set_icon(icon)
+icon = pygame.image.load("../graphics/icone.png")
+pygame.display.set_icon(icon)
 screen_width = 1200
 screen_height = 675
 
@@ -15,7 +15,6 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Age Of INSA')
 
 #font = pygame.font.SysFont('Constantia', 30)
-#fdsgdf
 background = transform.scale(image.load("../graphics/bg_Menu2.png"), (1200, 675)).convert()
 
 # define colours
@@ -30,7 +29,7 @@ yellow=(255, 255, 0)
 clicked = False
 counter = 0
 
-screen.blit(background, (0, 0))
+screen.blit(background, (0,0))
 
 font = pygame.font.Font("../graphics/this.otf", 50)
 textsurface = font.render("text", False, (0, 0, 0))
@@ -112,7 +111,7 @@ def menu_game() :
         if quit.draw_button():
             pygame.quit()
         if up.draw_button():
-            #pygame.mixer.music.set_volume(0.1)
+            pygame.mixer.music.set_volume(0.1)
             stings()
         if down.draw_button():
             print('Load Game')

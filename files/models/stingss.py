@@ -3,9 +3,6 @@ import pygame
 from pygame import *
 pygame.init()
 
-#test
-#icon = pygame.image.load("graphics/icone.png")
-#pygame.display.set_icon(icon)
 screen_width = 1000
 screen_height = 675
 
