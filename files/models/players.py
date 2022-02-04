@@ -225,13 +225,8 @@ class Personnage:
                         #SOUND['swordFight'].play(3)
                         s = 1
                     self.create_path(enemy_pos[0], enemy_pos[1])  # on attaque le prochain ennemi de la liste
-            # else :
-            # il n'y a plus de cibles : le personnage ne fait plus rien ou bien revient à son ancienne activité
-            # self.create_path(self.tile["grid"][0], self.tile["grid"][1])
 
-        # condition pour qu'un personnage allié attaque sa cible s'il est assez près
         if self.tile in enemy.tile["adj_tiles"] and self.world.world[enemy_pos[0]][enemy_pos[1]]["entity"]:
-            # self.create_path(self.tile["grid"][0], self.tile["grid"][1])
 
             if enemy.health > 0:
                 if self.world.is_on_a_tick(self.last_attack, 1000):
@@ -382,11 +377,6 @@ class Personnage:
                 self.last_click["tick"] = pygame.time.get_ticks()
                 self.last_click["type"] = 0
                 # print(grid_pos[0], grid_pos[1])
-                # if len(self.grids) != 0 :
-                #    self.d = self.direction(grid_pos, self.grids[len(self.grids) - 1])
-                #    print(self.d)
-                # else:
-                # self.grids.append(grid_pos)
 
                 if self.team == "player":
                     self.selected_enemies = [unit for unit in self.world.selected_units if
@@ -568,58 +558,3 @@ class Villager(Personnage):
         self.movestraight()
         self.charge_images_for_animation(1, 15, "Walk")
 
-
-class ScoutShip(Personnage):
-    def __init__(self, tile, world, camera, team, resource_manager):
-        super().__init__(tile, world, camera, team)
-        self.type_perso = "ScoutShip"
-        self.basevie = 120
-        self.health = 120
-        self.attack_damage = 5
-        self.costfood = 135
-        self.training_time_in_sec = 45
-        self.rateoffire = 1.5
-        self.speed = 1.75
-        self.upgradecost = 225
-        self.upgrade_time_in_sec = 40
-
-        self.resource_manager = resource_manager
-        self.resource_manager.apply_cost_to_resource(self.type_perso)
-
-        # ANIMATION IMAGE WALKING
-
-        self.sprites.append(pygame.image.load(Path('Sprites/Scout Ship/Scout Ship001.png')))
-        self.image = self.sprites[self.current_sprite]
-
-    def animation_walk_straight(self):
-        self.movestraight_animation = True
-        self.sprites = []
-
-        self.sprites.append(pygame.image.load(Path('Sprites/Scout Ship/Scout Ship002.png')))
-        self.sprites.append(pygame.image.load(Path('Sprites/Scout Ship/Scout Ship003.png')))
-        self.sprites.append(pygame.image.load(Path('Sprites/Scout Ship/Scout Ship004.png')))
-        self.sprites.append(pygame.image.load(Path('Sprites/Scout Ship/Scout Ship005.png')))
-
-    def animation_stand_ground(self):
-        self.animation_walk_straight()
-
-
-class Biggy(AxeThrower):
-    def __init__(self, tile, world, camera, team, resource_manager):
-        super().__init__(tile, world, camera, team)
-        self.type_perso = "AxeThrower"
-        self.basevie = 4000
-        self.health = 4000
-        self.attack_damage = 300
-        self.costfood = 50
-        self.training_time_in_sec = 26
-        self.rateoffire = 1.5
-        self.speed = 1.2
-        self.upgradecost = 100
-        self.upgrade_time_in_sec = 40
-
-        self.resource_manager = resource_manager
-        self.resource_manager.apply_cost_to_resource(self.type_perso)
-        # ANIMATION IMAGE WALKING
-        self.charge_images_for_animation(1, 15, "Stand")
-        self.image = self.sprites[self.current_sprite]

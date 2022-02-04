@@ -1,5 +1,6 @@
 from Ressource import Ressource
 from Tile import Tile
+from files.models.Definitions import TILE_SIZE
 from map import *
 from AI import *
 from camera import Camera
