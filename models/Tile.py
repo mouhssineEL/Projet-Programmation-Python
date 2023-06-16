@@ -1,4 +1,4 @@
-from Ressource import *
+from .Ressource import *
 
 class Tile:
     def __init__(self):

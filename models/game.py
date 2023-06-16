@@ -1,12 +1,12 @@
 
 import sys
-from camera import Camera
-from world import World
-from selection_fonction import Selection
-from hud import *
-from players import *
-from AI import *
-from resource_manager import ResourceManager
+from .camera import Camera
+from .world import World
+from .selection_fonction import Selection
+from .hud import *
+from .players import *
+from .AI import *
+from .resource_manager import ResourceManager
 ####VARIABLES GLOBALES
 
 

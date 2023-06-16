@@ -1,16 +1,17 @@
-from Ressource import Ressource
-from Tile import Tile
-from files.models.Definitions import TILE_SIZE
-from map import *
-from AI import *
-from camera import Camera
-from chat import *
+from .Ressource import Ressource
+from .Tile import Tile
+from models.Definitions import TILE_SIZE
+from .map import *
+from .AI import *
+from .camera import Camera
+from .chat import *
 import random
+from .players import *
+#from players import AxeThrower
+#from players import Scout
+
 class World:
     def __init__(self, resource_manager, entities, hud, grid_length_x, grid_length_y, width, height):
-        from players import Villager
-        from players import AxeThrower
-        from players import Scout
 
         self.resource_manager = resource_manager
         self.ressources = {
@@ -366,15 +367,15 @@ class World:
         return iso_x, iso_y
 
     def load_images(self):
-        Towncenter = pygame.image.load("../Buildings/Towncenter.png").convert_alpha()
-        grass = pygame.image.load("../assets/t_grass.png").convert_alpha()
-        water = pygame.image.load("../assets/t_water.png").convert_alpha()
-        tree = pygame.image.load("../assets/tree.png").convert_alpha()
-        bush = pygame.image.load("../assets/bush.png").convert_alpha()
-        gold = pygame.image.load("../assets/Gold.png").convert_alpha()
-        rock = pygame.image.load("../assets/Gold.png").convert_alpha()
-        house = pygame.image.load("../Buildings/House.png").convert_alpha()
-        flower = pygame.image.load("../assets/flower.png").convert_alpha()
+        Towncenter = pygame.image.load("Buildings/Towncenter.png").convert_alpha()
+        grass = pygame.image.load("assets/t_grass.png").convert_alpha()
+        water = pygame.image.load("assets/t_water.png").convert_alpha()
+        tree = pygame.image.load("assets/tree.png").convert_alpha()
+        bush = pygame.image.load("assets/bush.png").convert_alpha()
+        gold = pygame.image.load("assets/Gold.png").convert_alpha()
+        rock = pygame.image.load("assets/Gold.png").convert_alpha()
+        house = pygame.image.load("Buildings/House.png").convert_alpha()
+        flower = pygame.image.load("assets/flower.png").convert_alpha()
 
         return {"Towncenter": Towncenter, "grass": grass, "water": water, "tree": tree, "bush": bush, "gold": gold,
                 "rock": rock, "House": house, "flower": flower}

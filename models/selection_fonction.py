@@ -1,4 +1,4 @@
-from Definitions import *
+from .Definitions import *
 
 
 class Selection(pygame.sprite.Sprite):

@@ -1,6 +1,6 @@
 
 import pygame as pg
-from files.models.game import Game
+from models.game import Game
 
 
 def main():

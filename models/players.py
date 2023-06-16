@@ -2,7 +2,7 @@ from pathlib import Path
 from pathfinding.core.diagonal_movement import DiagonalMovement
 from pathfinding.core.grid import Grid
 from pathfinding.finder.a_star import AStarFinder
-from Definitions import *
+from .Definitions import *
 
 
 class Personnage:
@@ -20,7 +20,7 @@ class Personnage:
         self.tile["entity"] = True
         self.dest_tile = self.tile
 
-        self.image = pygame.image.load(Path('Sprites/Archer/Walk/Archerwalk001.png')).convert_alpha()
+        self.image = pygame.image.load(Path('models/Sprites/Archer/Walk/Archerwalk001.png')).convert_alpha()
         self.temp = 0
         self.en_attack = False
         self.moveright_animation = False
@@ -78,7 +78,7 @@ class Personnage:
 
         end_name = self.type_perso + type_animation
         end_name = end_name.capitalize()
-        general_path = "Sprites/" + self.type_perso + "/" + type_animation + "/" + end_name
+        general_path = "models/Sprites/" + self.type_perso + "/" + type_animation + "/" + end_name
 
         for frame_nb in range(first_frame, last_frame + 1):
             self.sprites.append(
@@ -501,7 +501,7 @@ class Scout(Personnage):
         self.resource_manager.apply_cost_to_resource(self.type_perso)
         # ANIMATION IMAGE WALKING
 
-        self.sprites.append(pygame.image.load(Path('Sprites/Scout/Walk/Scoutwalk001.png')))
+        self.sprites.append(pygame.image.load(Path('models/Sprites/Scout/Walk/Scoutwalk001.png')))
         self.image = self.sprites[self.current_sprite]
 
 

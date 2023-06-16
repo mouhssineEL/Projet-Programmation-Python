@@ -1,4 +1,4 @@
-from chat import *
+from .chat import *
 import pygame as pg
 import pygame
 
@@ -110,31 +110,31 @@ class Hud:
         screen.blit(self.resouces_surface, (0, 0))
         # build hud
         
-        background = pygame.image.load('../assets/selectioncivpanel.png')
+        background = pygame.image.load('assets/selectioncivpanel.png')
         background_scale=self.scale_image(background,self.width*1.01,self.height*0.25)
         screen.blit(background_scale, (self.width * 0, self.height * 0.75))
 
-        #UI_menu_chat = pygame.image.load('../assets/UI_menu_chat.png')
+        #UI_menu_chat = pygame.image.load('assets/UI_menu_chat.png')
         #UI_menu_chat_scale=background_scale=self.scale_image(UI_menu_chat,self.width*0.03,self.height*0.05)
         #screen.blit(UI_menu_chat_scale, (self.width*0.05, self.height*0.925))
 
-        resourcecivpanel = pygame.image.load('../assets/resourcecivpanel.png')
+        resourcecivpanel = pygame.image.load('assets/resourcecivpanel.png')
         resourcecivpanel_scale = self.scale_image(resourcecivpanel,self.width*1.01,self.height*0.06)
         screen.blit(resourcecivpanel_scale, (self.width*0, self.height * 0.0))
         
-        UI_food = pygame.image.load('../assets/iconfood.png')
+        UI_food = pygame.image.load('assets/iconfood.png')
         UI_UI_food_scale=background_scale=self.scale_image(UI_food,self.width*0.02,self.height*0.023)
         screen.blit(UI_UI_food_scale, (self.width*0.028, self.height*0.015))
 
-        UI_wood = pygame.image.load('../assets/iconwood.png')
+        UI_wood = pygame.image.load('assets/iconwood.png')
         UI_UI_wood_scale=background_scale=self.scale_image(UI_wood,self.width*0.02,self.height*0.023)
         screen.blit(UI_UI_wood_scale, (self.width*0.028 + 200, self.height*0.015))
 
-        UI_stone = pygame.image.load('../assets/iconpierre.png')
+        UI_stone = pygame.image.load('assets/iconpierre.png')
         UI_UI_stone_scale=background_scale=self.scale_image(UI_stone,self.width*0.02,self.height*0.023)
         screen.blit(UI_UI_stone_scale, (self.width*0.028 + 400, self.height*0.015))
 
-        UI_gold = pygame.image.load('../assets/icongold.png')
+        UI_gold = pygame.image.load('assets/icongold.png')
         UI_UI_gold_scale=background_scale=self.scale_image(UI_gold,self.width*0.02,self.height*0.023)
         screen.blit(UI_UI_gold_scale, (self.width*0.028 + 600, self.height*0.015))
 
@@ -216,14 +216,14 @@ class Hud:
     def load_images(self):
 
         # read images
-        Towncenter = pygame.image.load("../Buildings/Towncenter.png").convert_alpha()
-        House = pygame.image.load("../Buildings/House.png").convert_alpha()
-        Barracks = pygame.image.load("../Buildings/Barracks.png").convert_alpha()
-        ArcheryRange = pygame.image.load("../Buildings/Towncenter.png").convert_alpha()
-        Stable = pygame.image.load("../Buildings/Stable.png").convert_alpha()
-        SmallWall = pygame.image.load("../Buildings/SmallWall.png").convert_alpha()
-        SmallWall1 = pygame.image.load("../Buildings/SmallWall1.png").convert_alpha()
-        SmallWall2 = pygame.image.load("../Buildings/SmallWall2.png").convert_alpha()
+        Towncenter = pygame.image.load("Buildings\Towncenter.png").convert_alpha()
+        House = pygame.image.load("Buildings/House.png").convert_alpha()
+        Barracks = pygame.image.load("Buildings/Barracks.png").convert_alpha()
+        ArcheryRange = pygame.image.load("Buildings/Towncenter.png").convert_alpha()
+        Stable = pygame.image.load("Buildings/Stable.png").convert_alpha()
+        SmallWall = pygame.image.load("Buildings/SmallWall.png").convert_alpha()
+        SmallWall1 = pygame.image.load("Buildings/SmallWall1.png").convert_alpha()
+        SmallWall2 = pygame.image.load("Buildings/SmallWall2.png").convert_alpha()
         return {"Towncenter": Towncenter, "House": House,"Barracks":Barracks,"castel":ArcheryRange, "Stable":Stable, "SmallWall" :SmallWall,"SmallWall1" :SmallWall1, "SmallWall2":SmallWall2}
 
     

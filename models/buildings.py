@@ -29,21 +29,21 @@ class Batiment :
         
 
     def worksite(self, size) :
-        return pygame.image.load("../Buildings/in_construction/"+str(size)+"X"+str(size)+"/while_building_"+str(size)+"_1.png")
+        return pygame.image.load("Buildings/in_construction/"+str(size)+"X"+str(size)+"/while_building_"+str(size)+"_1.png")
 
     def in_construction(self,size) :
             if self.counter == self.constructiontime :
-                self.image =pygame.image.load("../Buildings/in_construction/"+str(size)+"X"+str(size)+"/while_building_"+str(size)+"_2.png")
+                self.image =pygame.image.load("Buildings/in_construction/"+str(size)+"X"+str(size)+"/while_building_"+str(size)+"_2.png")
             elif self.counter == 2*self.constructiontime :
-                self.image =pygame.image.load("../Buildings/in_construction/"+str(size)+"X"+str(size)+"/while_building_"+str(size)+"_3.png")
+                self.image =pygame.image.load("Buildings/in_construction/"+str(size)+"X"+str(size)+"/while_building_"+str(size)+"_3.png")
             elif self.counter >= 3*self.constructiontime :
-                self.image =pygame.image.load("../Buildings/"+self.name+".png")
+                self.image =pygame.image.load("Buildings/"+self.name+".png")
                 self.useable = True
                 self.curr_tick = 0
 
 
     def broken(self, size) :
-        return pygame.image.load("../Buildings/broken/broken_building_"+str(size)+".png")
+        return pygame.image.load("Buildings/broken/broken_building_"+str(size)+".png")
 
     def find_all_tiles(self) :
         all_tiles = []
@@ -113,7 +113,7 @@ class Towncenter(Batiment):
     def __init__(self, pos, world, camera, resource_manager, team):
         super().__init__(pos, world, camera, resource_manager, team)
         self.size = 1
-        self.image = pygame.image.load("../Buildings/Towncenter.png")
+        self.image = pygame.image.load("Buildings/Towncenter.png")
         self.name = "Towncenter"
         self.rect = self.image.get_rect(topleft=pos)
         self.resource_manager.apply_cost_to_resource(self.name)
@@ -127,8 +127,8 @@ class Towncenter(Batiment):
         self.all_tiles = self.find_all_tiles()
 
     def load_image(self):
-        villager = pygame.image.load("../assets/villager.png").convert_alpha()
-        upgrade = pygame.image.load("../assets/upgrade.png").convert_alpha()
+        villager = pygame.image.load("assets/villager.png").convert_alpha()
+        upgrade = pygame.image.load("assets/upgrade.png").convert_alpha()
         return{"Villager": villager, "upgrade": upgrade} 
 
 
@@ -167,8 +167,8 @@ class Barracks(Batiment):
         self.all_tiles = self.find_all_tiles()
 
     def load_image(self):
-        axemen = pygame.image.load("../assets/Axethrower.png").convert_alpha()
-        clubman= pygame.image.load("../assets/Axethrower.png").convert_alpha()
+        axemen = pygame.image.load("assets/Axethrower.png").convert_alpha()
+        clubman= pygame.image.load("assets/Axethrower.png").convert_alpha()
         return{"AxeThrower": axemen,"Clubman":clubman}
 
 class castel(Batiment):
@@ -189,7 +189,7 @@ class castel(Batiment):
         self.all_tiles = self.find_all_tiles()
         self.coordonne = 0
     def load_image(self):
-        archer = pygame.image.load("../assets/archer.png").convert_alpha()
+        archer = pygame.image.load("assets/archer.png").convert_alpha()
         return{"Archer": archer}    
 
 class Stable(Batiment):
@@ -210,7 +210,7 @@ class Stable(Batiment):
         self.all_tiles = self.find_all_tiles()
 
     def load_image(self):
-        scout = pygame.image.load("../assets/Scout.png").convert_alpha()
+        scout = pygame.image.load("assets/Scout.png").convert_alpha()
         return{"Scout": scout}  
 
 class SmallWall(Batiment):

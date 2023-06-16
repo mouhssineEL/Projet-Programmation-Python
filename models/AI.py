@@ -1,10 +1,10 @@
-from buildings import *
-
+from .buildings import *
+from .players import AxeThrower
+from .players import Villager
 
 class IA:
     def __init__(self, world, camera, resource_manager):
-        from players import AxeThrower
-        from players import Villager
+       
 
         self.world = world
         self.camera = camera

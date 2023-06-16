@@ -1,7 +1,7 @@
 import numpy
 
 
-from Definitions import MAP_SIZE
+from .Definitions import MAP_SIZE
 
 def noise(seed,x,y) :
     x = (x >> seed//2) ^ x

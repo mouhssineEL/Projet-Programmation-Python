@@ -1,7 +1,7 @@
 #on a pas arriver a travailiier avec chat
 import pygame as pg
 
-from players import *
+from .players import *
 pg.init()
 window = pg.display.set_mode((840, 580))
 COLOR_INACTIVE = (255,255,255)
